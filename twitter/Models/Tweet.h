@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Define initializer for Tweets that configures Tweets from a given dictionary
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-+(NSMutableArray *)tweetesWithArray:(NSArray *)dictionaries;
++(NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
 
 @end
 
