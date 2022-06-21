@@ -11,44 +11,16 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetCell.h"
+#import "Tweet.h"
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicView;
-@property (weak, nonatomic) IBOutlet UILabel *userNameView;
-@property (weak, nonatomic) IBOutlet UILabel *userTweetView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 
 @end
 
 @implementation TimelineViewController
-
-
-- (NSInteger)tableView:(UITableView *)tableView
-             numberOfRowsInSection:(NSInteger)section{
-    //Returns the number of rows in your table view
-    //Remove this magic-number later
-    return 20;
-}
-
-- (UITableViewCell *) tableView:(UITableView *)tableView
-          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    //UITableViewCell *cell = [[UITableViewCell alloc] init];
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
-    
-    // Update views with model data here!
-    cell.userNameView.text = @"Sam Osa!";
-    cell.userTweetView.text = @"Hello World!";
-    
-    /* Explore for-loop in viewDidLoad to see how starter code grabbed all the tweets. This is how you'll grab the tweet data for this view. Also, I recommend checking the NSMutableArray you made earlier.
-    NSString *URLString = tweet.user.profilePicture;
-    NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    */
-    
-    return cell;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,19 +34,48 @@
         if (tweets) {
             self.arrayOfTweets = (NSMutableArray*)tweets;
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
+            for (Tweet *dictionary in tweets) {
+                NSLog(@"%@", dictionary.text);
             }
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.tableView reloadData];
+        
     }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+             numberOfRowsInSection:(NSInteger)section{
+    //Returns the number of rows in your table view
+    return self.arrayOfTweets.count;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView
+          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //UITableViewCell *cell = [[UITableViewCell alloc] init];
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
+    
+    Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    
+    // Upload tweet labels
+    cell.userNameView.text = tweet.user.name;
+    cell.userTweetView.text = tweet.text;
+    
+    // Upload profile picture of user who tweeted
+    NSString *URLString = tweet.user.profilePicture;
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    cell.profilePicView.image = nil;
+    UIImage *imageFromData = [UIImage imageWithData:urlData];
+    cell.profilePicView.image = imageFromData;
+    return cell;
 }
 
 /*
