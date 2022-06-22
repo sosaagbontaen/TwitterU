@@ -8,6 +8,7 @@
 
 #import "BDBOAuth1SessionManager.h"
 #import "BDBOAuth1SessionManager+SFAuthenticationSession.h"
+#import "Tweet.h"
 
 @interface APIManager : BDBOAuth1SessionManager
 
@@ -17,5 +18,7 @@
 
 // Add a function for each API request you want to support
 // ex.) favoriting atweet, retweeting, getting timeline, etc.
+
+- (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
 
 @end
