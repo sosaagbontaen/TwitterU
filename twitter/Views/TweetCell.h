@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameView;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteView;
+@property (weak, nonatomic) IBOutlet UIButton *retweetView;
 @property (weak, nonatomic) IBOutlet UILabel *userTweetView;
 @property Tweet* tweet;
-
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -88,6 +88,7 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
     // Upload tweet labels
+    cell.tweet = tweet;
     cell.userNameView.text = tweet.user.name;
     cell.userTweetView.text = tweet.text;
     
