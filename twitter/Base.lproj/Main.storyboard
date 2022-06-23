@@ -146,7 +146,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwJ-Ju-MwH">
-                                                    <rect key="frame" x="89" y="78" width="25" height="28"/>
+                                                    <rect key="frame" x="87" y="214" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=""/>
@@ -155,11 +155,25 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHv-2s-LdE">
-                                                    <rect key="frame" x="122" y="78" width="25" height="28"/>
+                                                    <rect key="frame" x="180" y="214" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=""/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=""/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfG-Zu-miC" userLabel="favCountView">
+                                                    <rect key="frame" x="111" y="216" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mju-pU-g8I" userLabel="retweetCountView">
+                                                    <rect key="frame" x="205" y="216" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1cV-fH-mLY" firstAttribute="leading" secondItem="Shh-Xo-ls4" secondAttribute="trailing" constant="8" id="JYY-XL-KJl"/>
@@ -172,8 +186,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favCountView" destination="VfG-Zu-miC" id="bmY-mm-efu"/>
                                             <outlet property="favoriteView" destination="xwJ-Ju-MwH" id="I9k-Iv-VkG"/>
                                             <outlet property="profilePicView" destination="Shh-Xo-ls4" id="qvr-VO-2SZ"/>
+                                            <outlet property="retweetCountView" destination="Mju-pU-g8I" id="nIn-EB-Zo3"/>
                                             <outlet property="retweetView" destination="fHv-2s-LdE" id="qkk-BD-SXy"/>
                                             <outlet property="userNameView" destination="1cV-fH-mLY" id="X5J-NE-ydx"/>
                                             <outlet property="userTweetView" destination="mlr-b4-ZlU" id="CWv-AA-AT6"/>
@@ -267,6 +283,7 @@
     <resources>
         <image name="TwitterLogoBlue" width="133.33332824707031" height="133.33332824707031"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="retweet-icon" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

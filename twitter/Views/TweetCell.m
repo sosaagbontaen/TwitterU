@@ -11,22 +11,49 @@
 
 @implementation TweetCell
 
+
 - (IBAction)didTapFavorite:(id)sender {
     
-    // TODO: Update cell UI
     if (self.tweet.favorited == NO){
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
-        [sender setSelected:YES];
+        [self postRequestAddFavorites];
+        
     }
     else{
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
-        [sender setSelected:NO];
+        [self postRequestRemoveFavorites];
     }
-    [self refreshData];
+    [self refreshCell];
     
-    // TODO: Send a POST request to the POST favorites/create endpoint
+}
+
+- (void)refreshCell{
+    [self refreshFavorites];
+}
+
+- (void)refreshFavorites{
+    UIImage *favSelected = [UIImage imageNamed:@"favor-icon-red"];
+    UIImage *favDeselected = [UIImage imageNamed:@"favor-icon"];
+    
+    [self.favoriteView setSelected:FALSE];
+    [self.favoriteView setHighlighted:FALSE];
+    
+    self.favCountView.text = [@(self.tweet.favoriteCount) stringValue];
+    
+    if (self.tweet.favorited == YES){
+        [self.favoriteView setImage:favSelected
+                           forState:UIControlStateNormal];
+    }
+    else{
+        [self.favoriteView setImage:favDeselected
+                           forState:UIControlStateNormal];
+    }
+}
+
+- (void)postRequestAddFavorites{
+    // POST request to the POST favorites/create endpoint
      [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
          if(error){
               NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
@@ -37,25 +64,21 @@
      }];
 }
 
-- (void)refreshData{
-    UIImage *favSelected = [UIImage imageNamed:@"favor-icon-red"];
-    UIImage *favDeselected = [UIImage imageNamed:@"favor-icon"];
-    
-    [self.favoriteView setImage:favSelected
-                       forState:UIControlStateSelected];
-    [self.favoriteView setImage:favDeselected
-                       forState:UIControlStateNormal];
+- (void)postRequestRemoveFavorites{
+    // POST request to the POST favorites/create endpoint
+     [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+         }
+         else{
+             NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+         }
+     }];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

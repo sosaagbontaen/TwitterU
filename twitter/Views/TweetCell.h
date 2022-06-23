@@ -18,7 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *favoriteView;
 @property (weak, nonatomic) IBOutlet UIButton *retweetView;
 @property (weak, nonatomic) IBOutlet UILabel *userTweetView;
+@property (weak, nonatomic) IBOutlet UILabel *favCountView;
+@property (weak, nonatomic) IBOutlet UILabel *retweetCountView;
 @property Tweet* tweet;
+- (void)refreshCell;
 @end
 
 NS_ASSUME_NONNULL_END

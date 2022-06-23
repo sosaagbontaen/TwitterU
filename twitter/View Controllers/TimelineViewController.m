@@ -31,6 +31,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    NSLog(@"YoO!");
 
     
     self.tableView.dataSource = self;
@@ -87,10 +88,13 @@
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
-    // Upload tweet labels
+    // Upload tweet data to views
     cell.tweet = tweet;
+    cell.favCountView.text = [@(tweet.favoriteCount) stringValue];
+    cell.retweetCountView.text =[@(tweet.retweetCount) stringValue];
     cell.userNameView.text = tweet.user.name;
     cell.userTweetView.text = tweet.text;
+    [cell refreshCell];
     
     // Upload profile picture of user who tweeted
     NSString *URLString = tweet.user.profilePicture;
