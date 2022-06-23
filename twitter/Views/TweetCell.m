@@ -13,7 +13,6 @@
 
 
 - (IBAction)didTapFavorite:(id)sender {
-    
     if (self.tweet.favorited == NO){
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
@@ -26,11 +25,25 @@
         [self postRequestRemoveFavorites];
     }
     [self refreshCell];
-    
+}
+- (IBAction)didTapRetweet:(id)sender {
+    if (self.tweet.retweeted == NO){
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        [self postRequestAddRetweet];
+        
+    }
+    else{
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        [self postRequestRemoveRetweet];
+    }
+    [self refreshCell];
 }
 
 - (void)refreshCell{
     [self refreshFavorites];
+    [self refreshRetweets];
 }
 
 - (void)refreshFavorites{
@@ -48,6 +61,25 @@
     }
     else{
         [self.favoriteView setImage:favDeselected
+                           forState:UIControlStateNormal];
+    }
+}
+
+- (void)refreshRetweets{
+    UIImage *retweetSelected = [UIImage imageNamed:@"retweet-icon-green"];
+    UIImage *retweetDeselected = [UIImage imageNamed:@"retweet-icon"];
+    
+    [self.retweetView setSelected:FALSE];
+    [self.retweetView setHighlighted:FALSE];
+    
+    self.retweetCountView.text = [@(self.tweet.retweetCount) stringValue];
+    
+    if (self.tweet.retweeted == YES){
+        [self.retweetView setImage:retweetSelected
+                           forState:UIControlStateNormal];
+    }
+    else{
+        [self.retweetView setImage:retweetDeselected
                            forState:UIControlStateNormal];
     }
 }
@@ -75,6 +107,31 @@
          }
      }];
 }
+
+- (void)postRequestAddRetweet{
+    // POST request to the POST favorites/create endpoint
+     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+         }
+         else{
+             NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+         }
+     }];
+}
+
+- (void)postRequestRemoveRetweet{
+    // POST request to the POST favorites/create endpoint
+     [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+         }
+         else{
+             NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+         }
+     }];
+}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -159,6 +159,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=""/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="sXR-42-AYA" eventType="touchUpInside" id="zf8-Oa-B3C"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfG-Zu-miC" userLabel="favCountView">
                                                     <rect key="frame" x="111" y="216" width="42" height="21"/>
