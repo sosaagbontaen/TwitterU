@@ -45,14 +45,16 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I'm interested in how a dark-mode switch would be implemented or if that's determined by the iOS settings.
+2. I'd like to learn more efficient ways to reuse views (ex. detailsviewcontroller was recycled from the tableview in timelineviewcontroller)
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://user-images.githubusercontent.com/70764828/175719345-70ce1ef2-ae1f-4ebb-9059-e875af230e6f.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/70764828/175719345-70ce1ef2-ae1f-4ebb-9059-e875af230e6f.gif' title='Portrait Video Walkthrough' width='' alt='Portrait Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/70764828/175719894-aca3532c-ac05-4085-ab79-3c7fbf867f12.gif' title='Landscape Video Walkthrough' width='' alt='Lansdscape Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
