@@ -131,8 +131,8 @@
                                                     <rect key="frame" x="16" y="21" width="65" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cV-fH-mLY">
-                                                    <rect key="frame" x="89" y="21" width="311" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cV-fH-mLY">
+                                                    <rect key="frame" x="89" y="21" width="257" height="21"/>
                                                     <color key="backgroundColor" systemColor="systemBrownColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -177,6 +177,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="tweetDate" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSL-zW-4NF">
+                                                    <rect key="frame" x="78" y="164" width="330" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1cV-fH-mLY" firstAttribute="leading" secondItem="Shh-Xo-ls4" secondAttribute="trailing" constant="8" id="JYY-XL-KJl"/>
@@ -189,6 +196,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateView" destination="ZSL-zW-4NF" id="vXA-em-n34"/>
                                             <outlet property="favCountView" destination="VfG-Zu-miC" id="bmY-mm-efu"/>
                                             <outlet property="favoriteView" destination="xwJ-Ju-MwH" id="I9k-Iv-VkG"/>
                                             <outlet property="profilePicView" destination="Shh-Xo-ls4" id="qvr-VO-2SZ"/>

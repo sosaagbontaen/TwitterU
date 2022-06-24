@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *userTweetView;
 @property (weak, nonatomic) IBOutlet UILabel *favCountView;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountView;
+@property (weak, nonatomic) IBOutlet UILabel *dateView;
 @property Tweet* tweet;
 - (void)refreshCell;
 @end

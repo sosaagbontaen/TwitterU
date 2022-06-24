@@ -48,14 +48,14 @@
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         
         //Convert String to Date
-        NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        self.dateTweeted = [formatter dateFromString:createdAtOriginalString];
         
         // Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         
         // COnvert Date to String
-        self.createdAtString = [formatter stringFromDate:date];
+        self.createdAtString = [formatter stringFromDate:self.dateTweeted];
             
     }
     return self;

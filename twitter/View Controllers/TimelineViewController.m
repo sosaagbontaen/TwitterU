@@ -13,6 +13,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
+#import "DateTools.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
@@ -88,6 +89,7 @@
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
+    
     // Upload tweet data to views
     cell.tweet = tweet;
     cell.favCountView.text = [@(tweet.favoriteCount) stringValue];
@@ -95,6 +97,32 @@
     cell.userNameView.text = tweet.user.name;
     cell.userTweetView.text = tweet.text;
     [cell refreshCell];
+    
+    long dateTweetedAsInt;
+    
+    if ([tweet.dateTweeted secondsAgo] < 60){
+        dateTweetedAsInt = [tweet.dateTweeted secondsAgo];
+        cell.dateView.text = [NSString stringWithFormat:@"%lds", dateTweetedAsInt];
+    }
+    else if ([tweet.dateTweeted minutesAgo] < 60){
+        dateTweetedAsInt = [tweet.dateTweeted minutesAgo];
+        cell.dateView.text = [NSString stringWithFormat:@"%ldm", dateTweetedAsInt];
+    }
+    else if ([tweet.dateTweeted hoursAgo] < 24){
+        dateTweetedAsInt = [tweet.dateTweeted hoursAgo];
+        cell.dateView.text = [NSString stringWithFormat:@"%ldh", dateTweetedAsInt];
+    }
+    else if ([tweet.dateTweeted daysAgo] < 7){
+        dateTweetedAsInt = [tweet.dateTweeted daysAgo];
+        cell.dateView.text = [NSString stringWithFormat:@"%ldd", dateTweetedAsInt];
+    }
+    else{
+        NSString *formattedDate = [tweet.dateTweeted formattedDateWithStyle:NSDateFormatterShortStyle];
+        cell.dateView.text = formattedDate;
+    }
+    
+    //dateTweetedAsInt = [tweet.dateTweeted formattedDateWithStyle:"yyyy"];
+    
     
     // Upload profile picture of user who tweeted
     NSString *URLString = tweet.user.profilePicture;
