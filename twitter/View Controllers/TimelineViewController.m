@@ -28,56 +28,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
     [self fetchTweets];
 }
 
 - (void)didTweet:(Tweet *)tweet{
-    [self.arrayOfTweets insertObject:tweet
-                                    atIndex:0];
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
 
 - (void)fetchTweets{
-    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                           delegate:nil
                                                      delegateQueue:[NSOperationQueue mainQueue]];
     session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             self.arrayOfTweets = (NSMutableArray*)tweets;
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (Tweet *dictionary in tweets) {
-                NSLog(@"%@", dictionary.text);
-            }
-        } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
         [self.tableView reloadData];
-        // Tell the refreshControl to stop spinning
-         [self.refreshControl endRefreshing];
+        [self.refreshControl endRefreshing];
         
     }];
 }
  
-
-
-
-
 - (NSInteger)tableView:(UITableView *)tableView
              numberOfRowsInSection:(NSInteger)section{
-    //Returns the number of rows in your table view
     return self.arrayOfTweets.count;
 }
 
@@ -88,8 +68,6 @@
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
-    
-    // Upload tweet data to views
     cell.tweet = tweet;
     cell.favCountView.text = [@(tweet.favoriteCount) stringValue];
     cell.retweetCountView.text =[@(tweet.retweetCount) stringValue];
@@ -121,7 +99,6 @@
         cell.dateView.text = formattedDate;
     }
     
-    // Upload profile picture of user who tweeted
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -133,15 +110,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-//    composeSegue
     if ([[segue identifier] isEqualToString:@"composeSegue"]) {
 
         UINavigationController *navigationController = [segue destinationViewController];

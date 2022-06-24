@@ -17,10 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VKm-65-zhh">
-                                <rect key="frame" x="20" y="80" width="388" height="185"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VKm-65-zhh">
+                                <rect key="frame" x="8" y="64" width="412" height="300"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="ybZ-kS-VXo"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -28,6 +30,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mX0-eo-eN8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VKm-65-zhh" firstAttribute="top" secondItem="mX0-eo-eN8" secondAttribute="top" constant="8" id="LSP-JS-B1f"/>
+                            <constraint firstItem="VKm-65-zhh" firstAttribute="leading" secondItem="mX0-eo-eN8" secondAttribute="leading" constant="8" id="ZID-uX-V4v"/>
+                            <constraint firstItem="mX0-eo-eN8" firstAttribute="trailing" secondItem="VKm-65-zhh" secondAttribute="trailing" constant="8" id="bey-dT-OZM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compose" id="bwt-ZN-vCC">
                         <barButtonItem key="leftBarButtonItem" title="X" id="VuL-qg-EaT">

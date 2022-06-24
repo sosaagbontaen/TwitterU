@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *screenName;
 @property (nonatomic, strong) NSString *profilePicture;
 
-// Define initializer for user with a dictionary (created in User.m file)
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

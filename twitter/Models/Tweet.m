@@ -18,7 +18,6 @@
 
     if (self)
     {
-        // If Tweet is a re-tweet
         NSDictionary *originalTweet = dictionary[@"retweeted_status"];
         if (originalTweet != nil)
         {
@@ -54,7 +53,7 @@
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         
-        // COnvert Date to String
+        // Convert Date to String
         self.createdAtString = [formatter stringFromDate:self.dateTweeted];
             
     }

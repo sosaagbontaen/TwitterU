@@ -23,9 +23,7 @@
     self.favCountView.text = [@(self.tweet.favoriteCount) stringValue];
     self.retweetCountView.text =[@(self.tweet.retweetCount) stringValue];
     self.userTweetView.text = self.tweet.text;
-    
-//    [self refreshCell];
-//
+
     long dateTweetedAsInt;
 
     if ([self.tweet.dateTweeted secondsAgo] < 60){
@@ -49,7 +47,6 @@
         self.dateView.text = formattedDate;
     }
 
-    // Upload profile picture of user who tweeted
     NSString *URLString = self.tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -57,14 +54,5 @@
     UIImage *imageFromData = [UIImage imageWithData:urlData];
     self.profilePicView.image = imageFromData;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-*/
 
 @end
