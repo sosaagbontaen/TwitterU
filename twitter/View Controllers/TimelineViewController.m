@@ -94,6 +94,7 @@
     cell.tweet = tweet;
     cell.favCountView.text = [@(tweet.favoriteCount) stringValue];
     cell.retweetCountView.text =[@(tweet.retweetCount) stringValue];
+    cell.screenNameView.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName ];
     cell.userNameView.text = tweet.user.name;
     cell.userTweetView.text = tweet.text;
     [cell refreshCell];
